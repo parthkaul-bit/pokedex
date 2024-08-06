@@ -1,7 +1,12 @@
-export interface AppTypeInitialState {}
+export interface AppTypeInitialState {
+  toasts: string[];
+  userInfo: undefined | { email: string };
+}
+
 export interface PokemonTypeInitialState {
     allPokemon: undefined | genericPokemonType[];
     randomPokemons: undefined | generatedPokemonType[];
+    compareQueue: generatedPokemonType[]; 
 }
 
 export interface genericPokemonType {
@@ -29,3 +34,16 @@ export interface pokemonTypeInterface {
   export interface userPokemonsType extends generatedPokemonType {
     firebaseId?: string;
   }
+
+  export interface pokemonStatsType {
+    name: string;
+    value: string;
+  }
+
+  
+export type pokemonStatType =
+| "vulnerable"
+| "weakness"
+| "strength"
+| "resistance";
+
