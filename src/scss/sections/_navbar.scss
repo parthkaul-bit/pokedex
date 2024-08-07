@@ -23,7 +23,7 @@ nav {
         align-items: center;
         border-bottom: 1px solid transparent;
         &:hover {
-          border-color: whitesmoke;
+          border-color:var(--accent-color);
         }
         li {
           text-transform: uppercase;
@@ -34,7 +34,7 @@ nav {
         }
       }
       .active {
-        border-color: whitesmoke;
+        border-color: var(--accent-color);
       }
     }
   }
