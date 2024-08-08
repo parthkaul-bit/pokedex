@@ -3,6 +3,7 @@ import { AppTypeInitialState } from "../../utils/Types";
 import { pokemonTabs } from "../../utils/Constant";
 
 const initialState: AppTypeInitialState = {
+    isLoading: true,
     toasts: [],
     userInfo: undefined,
     currentPokemonTab: pokemonTabs.description,
@@ -25,8 +26,11 @@ export const AppSlice = createSlice({
         },        
         setPokemonTab: (state, action) => {
             state.currentPokemonTab = action.payload
-        }
+        },
+        setLoading: (state, action) => {
+            state.isLoading = action.payload;
+          },
     },
 })
 
-export const {setToast, clearToasts, setUserStatus, setPokemonTab} = AppSlice.actions;
+export const {setToast, clearToasts, setUserStatus, setPokemonTab, setLoading} = AppSlice.actions;

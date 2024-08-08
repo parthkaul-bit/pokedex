@@ -3,9 +3,10 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { getPokemonData } from "../../app/reducers/getPokemonData";
 import Pokemon from "../Pokemon";
 import PokemonCardGrid from "../../components/PokemonCardGrid";
+import Loader from "../../components/Loader";
 
 const Evolution = () => {
-  const [isloaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useAppDispatch();
   const { currentPokemon, randomPokemons } = useAppSelector(
     ({ pokemon }) => pokemon
@@ -21,7 +22,7 @@ const Evolution = () => {
   }, [dispatch, currentPokemon]);
   return (
     <div className="page">
-      {isloaded && <PokemonCardGrid pokemons={randomPokemons!} />}
+      {isLoaded ? <PokemonCardGrid pokemons={randomPokemons!} /> : <Loader />}
     </div>
   );
 };

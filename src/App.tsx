@@ -9,12 +9,13 @@ import Search from "./pages/Search";
 import Compare from "./pages/Compare";
 import Pokemon from "./pages/Pokemon";
 import MyList from "./pages/MyList";
-import About from "./pages/About";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { clearToasts, setUserStatus } from "./app/slices/AppSlice";
 import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "./utils/FirebaseConfig";
+import Loader from "./components/Loader";
+
 function App() {
   const { toasts } = useAppSelector(({ app }) => app);
   const dispatch = useAppDispatch();
@@ -47,21 +48,22 @@ function App() {
   return (
     <div className="main-container">
       <Background />
-      <div className="app">
-        <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route element={<Search />} path="/search" />
-            <Route element={<Compare />} path="/compare" />
-            <Route element={<Pokemon />} path="/pokemon/:id" />
-            <Route element={<Navigate to="/pokemon/1" />} path="*" />
-            <Route element={<MyList />} path="/list" />
-            <Route element={<About />} path="/about" />
-          </Routes>
-          <Footer />
-          <ToastContainer />
-        </BrowserRouter>
-      </div>
+      <BrowserRouter>
+        <Suspense fallback={<Loader />}>
+          <div className="app">
+            <Navbar />
+            <Routes>
+              <Route element={<Search />} path="/search" />
+              <Route element={<MyList />} path="/list" />
+              <Route element={<Compare />} path="/compare" />
+              <Route element={<Pokemon />} path="/pokemon/:id" />
+              <Route element={<Navigate to="/pokemon/1" />} path="*" />
+            </Routes>
+            <Footer />
+            <ToastContainer />
+          </div>
+        </Suspense>
+      </BrowserRouter>
     </div>
   );
 }

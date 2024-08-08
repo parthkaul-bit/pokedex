@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import pokeballIcon from "../assets/pokeball-icon.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
@@ -20,10 +19,6 @@ function Navbar() {
       name: "My List",
       route: "/list",
     },
-    {
-      name: "About",
-      route: "/about",
-    },
   ];
 
   return (
@@ -42,9 +37,7 @@ function Navbar() {
           })}
         </ul>
       </div>
-      <div className="block">
-        <GiHamburgerMenu />
-      </div>
+      <div className="block"></div>
     </nav>
   );
 }
